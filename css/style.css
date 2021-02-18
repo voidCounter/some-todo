@@ -1,0 +1,68 @@
+body {
+    font-size: calc(0.75em + 1vmin);
+    background-color: #0b0d0e;
+    color: rgba(255, 255, 255, 0.8);
+}
+/* testing by border */
+
+.main-content,
+.todos,
+.todo-list {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.main-content {
+    padding: 30px 30px;
+    row-gap: 20px;
+}
+.todo-list {
+    row-gap: 5px;
+}
+.single-todo,
+.add-new-btn,
+.nothing-to-show {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    column-gap: 10px;
+}
+.single-todo-container {
+    padding: 10px 15px;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.single-todo i {
+    color: white;
+    font-size: 23px;
+}
+.add-new-btn {
+    opacity: 0.6;
+    transition: opacity 0.5s ease-in;
+    border-radius: 100px;
+    padding: 8px 15px;
+    color: rgba(255, 255, 255, 0.8);
+}
+.add-new-btn input {
+    width: 100%;
+    color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    border: 0px;
+}
+.add-new-btn input:focus {
+    outline: none;
+}
+.focused {
+    background-color: rgba(255, 255, 255, 0.05);
+    opacity: 1;
+}
+.add-new-btn input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+.nothing-to-show {
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    height: 100px;
+    justify-content: center;
+}
+.nothing-to-show span {
+    color: rgba(255, 255, 255, 0.7);
+}
