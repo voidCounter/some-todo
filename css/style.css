@@ -1,68 +1,121 @@
+:root {
+    --main-txt-color: rgba(255, 255, 255, 0.8);
+    --main-bg-color: rgba(255, 255, 255, 0.1);
+    --focused: rgba(255, 255, 255, 0.05);
+}
 body {
     font-size: calc(0.75em + 1vmin);
     background-color: #0b0d0e;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--main-txt-color);
 }
 /* testing by border */
-
 .main-content,
 .todos,
 .todo-list {
     display: flex;
     flex-flow: column nowrap;
 }
+.todos {
+    justify-content: center;
+    row-gap: 30px;
+}
 .main-content {
     padding: 30px 30px;
     row-gap: 20px;
 }
+
 .todo-list {
     row-gap: 5px;
 }
 .single-todo,
 .add-new-btn,
-.nothing-to-show {
+.nothing-to-show,
+.active-todos,
+.statistics {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     column-gap: 10px;
 }
+.statistics {
+    justify-content: space-evenly;
+}
+.progress {
+    width: 80%;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--main-bg-color);
+}
+#progress-fill {
+    width: 0%;
+    transition: width 0.5s ease;
+    height: 10px;
+    border-radius: 10px;
+    background-color: var(--main-txt-color);
+}
+.active-todos {
+    width: 40px;
+    justify-content: center;
+    height: 40px;
+    border-radius: 30px;
+    background-color: var(--main-txt-color);
+}
+#active-count {
+    color: black;
+}
 .single-todo-container {
     padding: 10px 15px;
+    opacity: 1;
     border-radius: 100px;
-    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease-in-out;
+    background-color: var(--main-bg-color);
 }
-.single-todo i {
-    color: white;
+i {
+    color: var(--main-txt-color);
     font-size: 23px;
 }
+
+i.remove-todo {
+    color: rgba(255, 255, 255, 0.3);
+}
 .add-new-btn {
-    opacity: 0.6;
-    transition: opacity 0.5s ease-in;
+    opacity: 0;
+    transition: opacity 0.7s ease-in;
     border-radius: 100px;
     padding: 8px 15px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--main-txt-color);
 }
-.add-new-btn input {
+input {
     width: 100%;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--main-txt-color);
     background: transparent;
     border: 0px;
 }
-.add-new-btn input:focus {
+input:focus {
     outline: none;
 }
+::selection {
+    background: var(--main-bg-color);
+}
+.strike {
+    text-decoration: line-through;
+    color: gray;
+}
+.unfocused {
+    opacity: 0;
+}
 .focused {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--focused);
     opacity: 1;
 }
 .add-new-btn input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 .nothing-to-show {
-    border: 2px solid rgba(255, 255, 255, 0.7);
+    border: 2px solid var(--main-bg-color);
     height: 100px;
     justify-content: center;
 }
 .nothing-to-show span {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--main-bg-color);
 }
