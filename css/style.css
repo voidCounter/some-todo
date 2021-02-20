@@ -9,29 +9,58 @@ body {
     color: var(--main-txt-color);
 }
 /* testing by border */
-.main-content,
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--main-bg-color);
+    border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-txt-color);
+}
+
 .todos,
-.todo-list {
-    display: flex;
-    flex-flow: column nowrap;
+.todo-list,
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
 }
 .todos {
+    max-height: calc(100vh - 220px);
     justify-content: center;
     row-gap: 30px;
+    overflow-y: scroll;
+    padding: 0px 10px;
 }
 .main-content {
-    padding: 30px 30px;
-    row-gap: 20px;
+    margin: 0px auto;
+    padding: 20px 10px;
 }
 
 .todo-list {
-    row-gap: 5px;
+    row-gap: 8px;
 }
 .single-todo,
 .add-new-btn,
 .nothing-to-show,
 .active-todos,
-.statistics {
+.statistics,
+.option-btn,
+.options {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -39,6 +68,7 @@ body {
 }
 .statistics {
     justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 .progress {
     width: 80%;
@@ -57,11 +87,11 @@ body {
     width: 40px;
     justify-content: center;
     height: 40px;
-    border-radius: 30px;
-    background-color: var(--main-txt-color);
+    border-radius: 40px;
+    background-color: var(--main-bg-color);
 }
 #active-count {
-    color: black;
+    color: var(--main-txt-color);
 }
 .single-todo-container {
     padding: 10px 15px;
@@ -76,13 +106,15 @@ i {
 }
 
 i.remove-todo {
-    color: rgba(255, 255, 255, 0.3);
+    color: var(--main-txt-color);
+    opacity: 0.7;
 }
 .add-new-btn {
-    opacity: 0;
-    transition: opacity 0.7s ease-in;
+    opacity: 0.6;
+    transition: all 0.7s ease-in;
     border-radius: 100px;
     padding: 8px 15px;
+    margin-top: 8px;
     color: var(--main-txt-color);
 }
 input {
@@ -109,7 +141,8 @@ input:focus {
     opacity: 1;
 }
 .add-new-btn input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--main-txt-color);
+    opacity: 0.5;
 }
 .nothing-to-show {
     border: 2px solid var(--main-bg-color);
@@ -118,4 +151,91 @@ input:focus {
 }
 .nothing-to-show span {
     color: var(--main-bg-color);
+}
+.option-btn {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    color: black;
+    background-color: var(--main-bg-color);
+}
+.options {
+    padding: 8px;
+    border-radius: 50px;
+    background-color: var(--main-bg-color);
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(60px);
+}
+.display-options {
+    display: flex;
+}
+.options-pop {
+    transform: translateY(-60px);
+    opacity: 1;
+}
+.options > * {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 3px solid var(--main-bg-color);
+}
+.cod-202040 {
+    background-color: #202040;
+}
+.cod-222831 {
+    background-color: #222831;
+}
+.col-e69a8dff {
+    background-color: #e69a8dff;
+}
+.cod-00203fff {
+    background-color: #00203fff;
+}
+.cod-2d2926ff {
+    background-color: #2d2926ff;
+}
+.col-faebefff {
+    background-color: #faebefff;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .main-content {
+        width: 90%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .main-content {
+        width: 75%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .main-content {
+        width: 75%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .main-content {
+        width: 50%;
+    }
 }

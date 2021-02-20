@@ -41,7 +41,20 @@ const functionalities = {
 			targetBtn.addEventListener("click", () => {
 				changeView.singleTodoView.removeATodo(`todo-${presentTodoCount}`, false);
 			})
-		}
+		},
+		optionBtn : () => {
+			const targetBtn = document.getElementsByClassName("option-btn")[0];
+			const optionsContainer = document.getElementsByClassName("options")[0];
+			targetBtn.addEventListener("click", () => {
+					optionsContainer.classList.toggle("display-options");
+				setTimeout(() => {
+					optionsContainer.classList.toggle("options-pop");
+				}, 50);
+			});
+			optionsContainer.addEventListener("click", (event) => {
+				changeView.changeBgColor(event.target.classList);
+			});
+		},
 	}
 
 };
@@ -104,12 +117,35 @@ const changeView = {
 		if(doneCount === 0 && activeCount > progressCount){
 			activeCount = progressCount;
 		}
+	},
+	changeBgColor : (colorClass) => {
+		const [isColor, color] = colorClass;
+		const [darkOrLight, colorCode]= color.split("-");
+		if(isColor === 'color'){
+			document.body.style.background = `#${colorCode}`;
+			if(darkOrLight === 'col'){
+				console.log(darkOrLight);
+				document.documentElement.style.setProperty('--main-txt-color', 'black');
+				document.documentElement.style.setProperty('--main-bg-color', 'rgba(0, 0, 0, 0.1)');
+				document.documentElement.style.setProperty('--focused', 'rgba(0, 0, 0, 0.05)');
+			}
+			else{
+				document.documentElement.style.setProperty('--main-txt-color', 'rgba(255, 255, 255, 0.8)');
+				document.documentElement.style.setProperty('--main-bg-color', 'rgba(255, 255, 255, 0.1)');
+				document.documentElement.style.setProperty('--focused', 'rgba(255, 255, 255, 0.05)');
+			}
+		}
 	}
 };
 const controller = {
 	todoCounter : 0,
 	create : () => {
 		functionalities.eventListeners.newTodo();
+	},
+	optionsToggler : () => {
+		functionalities.eventListeners.optionBtn();
 	}
 }
 controller.create();
+controller.optionsToggler();
+
