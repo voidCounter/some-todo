@@ -1,11 +1,12 @@
 :root {
-    --main-txt-color: rgba(255, 255, 255, 0.8);
-    --main-bg-color: rgba(255, 255, 255, 0.1);
-    --focused: rgba(255, 255, 255, 0.05);
+    --main-txt-color: black;
+    --main-bg-color: rgba(0, 0, 0, 0.1);
+    --focused: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(0, 0, 0, 0.5);
 }
 body {
     font-size: calc(0.75em + 1vmin);
-    background-color: #0b0d0e;
+    background-color: #faebefff;
     color: var(--main-txt-color);
 }
 /* testing by border */
@@ -29,6 +30,13 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--main-txt-color);
+}
+.button {
+    transition: all 0.5s ease;
+}
+.button-clicked {
+    transform: scale(1.2);
+    border: 2px solid var(--main-txt-color);
 }
 
 .todos,
@@ -78,7 +86,7 @@ main {
 }
 #progress-fill {
     width: 0%;
-    transition: width 0.5s ease;
+    transition: width 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     height: 10px;
     border-radius: 10px;
     background-color: var(--main-txt-color);
@@ -185,7 +193,6 @@ input:focus {
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    border: 3px solid var(--main-bg-color);
 }
 .cod-202040 {
     background-color: #202040;

@@ -9,7 +9,7 @@ const functionalities = {
 		newTodo : () => {
 			window.addEventListener("keypress", () => {
 				newTodoInput.focus();
-			})
+			}, {once: true});
 			const todoContainer = document.getElementsByClassName("add-new-btn")[0];
 			newTodoInput.addEventListener("focusin", () => {
 				todoContainer.classList.add("focused");
@@ -34,19 +34,19 @@ const functionalities = {
 					notDoneIcon.classList.replace("fa-check-circle", "fa-circle");
 				}
 				changeView.singleTodoView.removeATodo(`todo-${presentTodoCount}`, true);
-			})
+			}, {once: true});
 		},
 		removeBtn : (presentTodoCount) => {
 			const targetBtn = document.getElementsByClassName(`remove-${presentTodoCount}`)[0];
 			targetBtn.addEventListener("click", () => {
 				changeView.singleTodoView.removeATodo(`todo-${presentTodoCount}`, false);
-			})
+			});
 		},
 		optionBtn : () => {
 			const targetBtn = document.getElementsByClassName("option-btn")[0];
 			const optionsContainer = document.getElementsByClassName("options")[0];
 			targetBtn.addEventListener("click", () => {
-					optionsContainer.classList.toggle("display-options");
+				optionsContainer.classList.toggle("display-options");
 				setTimeout(() => {
 					optionsContainer.classList.toggle("options-pop");
 				}, 50);
@@ -55,6 +55,14 @@ const functionalities = {
 				changeView.changeBgColor(event.target.classList);
 			});
 		},
+		buttonClicked : () => {
+			const buttonClasses = document.getElementsByClassName("button");
+			for( let i = 0; i < buttonClasses.length ; i+=1){
+				buttonClasses[i].addEventListener("click", () => {
+					buttonClasses[i].classList.toggle("button-clicked");
+				});
+			}
+		}
 	}
 
 };
@@ -106,7 +114,6 @@ const changeView = {
 
 		const width = 100/activeCount;
 		const fill = doneCount * width;
-		console.log(activeCount, `${doneCount} ${  progressCount}`);
 		const progressFill = document.getElementById("progress-fill");
 		progressFill.style.width = `${fill}%`;
 		if(activeCount === doneCount){
@@ -119,12 +126,11 @@ const changeView = {
 		}
 	},
 	changeBgColor : (colorClass) => {
-		const [isColor, color] = colorClass;
+		const [button, isColor, color] = colorClass;
 		const [darkOrLight, colorCode]= color.split("-");
 		if(isColor === 'color'){
 			document.body.style.background = `#${colorCode}`;
 			if(darkOrLight === 'col'){
-				console.log(darkOrLight);
 				document.documentElement.style.setProperty('--main-txt-color', 'black');
 				document.documentElement.style.setProperty('--main-bg-color', 'rgba(0, 0, 0, 0.1)');
 				document.documentElement.style.setProperty('--focused', 'rgba(0, 0, 0, 0.05)');
@@ -144,8 +150,11 @@ const controller = {
 	},
 	optionsToggler : () => {
 		functionalities.eventListeners.optionBtn();
+	},
+	allButtonEffects : () => {
+		functionalities.eventListeners.buttonClicked();
 	}
-}
+};
 controller.create();
 controller.optionsToggler();
-
+controller.allButtonEffects();
