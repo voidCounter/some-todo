@@ -51,8 +51,9 @@ const functionalities = {
 					optionsContainer.classList.toggle("options-pop");
 				}, 50);
 			});
+			changeView.hideMarkar();
 			optionsContainer.addEventListener("click", (event) => {
-				changeView.changeBgColor(event.target.classList);
+				changeView.changeBgColor(event.target);
 			});
 		},
 		buttonClicked : () => {
@@ -125,8 +126,10 @@ const changeView = {
 			activeCount = progressCount;
 		}
 	},
-	changeBgColor : (colorClass) => {
-		const [button, isColor, color] = colorClass;
+	changeBgColor : (colorType) => {
+		changeView.hideMarkar();
+		colorType.children[0].classList.remove("display-none");
+		const [isColor, color] = colorType.classList;
 		const [darkOrLight, colorCode]= color.split("-");
 		if(isColor === 'color'){
 			document.body.style.background = `#${colorCode}`;
@@ -140,6 +143,12 @@ const changeView = {
 				document.documentElement.style.setProperty('--main-bg-color', 'rgba(255, 255, 255, 0.1)');
 				document.documentElement.style.setProperty('--focused', 'rgba(255, 255, 255, 0.05)');
 			}
+		}
+	},
+	hideMarkar : () => {
+		const markars = document.getElementsByClassName("markar");
+		for(let i = 0; i < markars.length ; i++){
+			markars[i].classList.add("display-none");
 		}
 	}
 };
