@@ -1,5 +1,5 @@
 # some-todo
-<img src="images/full-page.jpg" width="100%" height="auto" align="center">
+<img src="/images/full-page.jpg" width="100%" height="auto" align="center">
 <br/>
 Live site: https://rohittz.github.io/some-todo/
 <br/>
